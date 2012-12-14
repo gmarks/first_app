@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @line_item.name %>
+</p>
+
+<p>
+  <b>Target platform:</b>
+  <%= @line_item.target_platform %>
+</p>
+
+<p>
+  <b>Inventory sizes:</b>
+  <%= @line_item.inventory_sizes %>
+</p>
+
+<p>
+  <b>Line Item Type:</b>
+  <%= @line_item.line_item_type %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= @line_item.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @line_item.end_time %>
+</p>
+
+<p>
+  <b>Custom criteria:</b>
+  <%= @line_item.custom_criteria %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @line_item.comment %>
+</p>
+
+<p>
+  <b>Units bought:</b>
+  <%= @line_item.units_bought %>
+</p>
+
+<p>
+  <b>Unit type:</b>
+  <%= @line_item.unit_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_line_item_path(@line_item) %> |
+<%= link_to 'Back', line_items_path %>

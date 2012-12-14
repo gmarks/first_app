@@ -1,0 +1,68 @@
+<h1><%= @parties.count %> Agents/Brokers, <%= @parties_with_leads_count %> have leads</h1>
+
+<table class="formatted_table">
+	<thead>
+	<tr>
+		<td colspan="5"></td>
+		<th colspan="5" class="center">Billing Period or MTD Unique</th>
+		<td colspan="5"></td>
+	</tr>
+  <tr>
+    <th></th>
+    <th>HF Party Id</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Products</th>
+    <th>Listings</th>
+	<th class="right">Party PVs</th>
+	<th class="right">Calls</th>
+	<th class="right">Emails</th>
+	<th class="right">Total Leads</th>
+	<th>Next Bill In</th>
+	<th>Last checked for leads</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+	</thead>
+<% @parties.each do |party| %>
+  <tr>
+    <td><%= image_tag party.hf_party_image_url, :height => 70 %></td>
+    <td><%= link_to party.hf_party_id, party.hf_party_page, :target => "_blank" %></td>
+    <td class="center"><%= party.name %></td>
+    <td><%= party.hf_party_type %></td>
+    <td>
+		<% if party.recurly_addon_array %>
+			<table class="inner_table">
+				<tr>
+					<th>Add On</th>
+					<th>Quantity</th>
+					<th>Charge</th>
+				</tr>
+			<% party.recurly_addon_array.each do |addon| %>
+				<tr>
+					<td><%= ADDON_CODE_HASH[addon["add_on_code"]] %></td>
+					<td><%= addon["quantity"] %></td>
+					<td><%= number_to_currency(addon["quantity"] * addon["unit_amount_in_cents"]/100) %></td>
+				</tr>
+			<% end %>
+			</table>
+		<% end %>
+	</td>
+    <td class="right"><%= party.number_of_listings %></td>
+    <td class="right"><%= party.mtd_pageviews %></td>
+    <td class="right"><%= party.mtd_unique_calls %></td>
+    <td class="right"><%= party.mtd_unique_emails %></td>
+    <td class="right<%= " green" if party.total_unique_leads > 0 %>"><%= party.total_unique_leads %></td>
+    <td class="right"><%= pluralize(party.billing_days_left, "day") if party.next_billing_date %></td>
+    <td class="right"><%= party.updated_at.strftime("%D %r") %></td>
+    <td><%= link_to 'Show', party %></td>
+    <td><%= link_to 'Edit', edit_party_path(party) %></td>
+    <td><%= link_to 'Destroy', party, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Party', new_party_path %>

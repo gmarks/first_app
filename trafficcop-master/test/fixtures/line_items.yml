@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  target_platform: MyString
+  inventory_sizes: MyString
+  type: 
+  start_time: 2012-11-21 10:03:26
+  end_time: 2012-11-21 10:03:26
+  custom_criteria: MyString
+  comment: MyString
+  units_bought: 1
+  unit_type: MyString
+
+two:
+  name: MyString
+  target_platform: MyString
+  inventory_sizes: MyString
+  type: 
+  start_time: 2012-11-21 10:03:26
+  end_time: 2012-11-21 10:03:26
+  custom_criteria: MyString
+  comment: MyString
+  units_bought: 1
+  unit_type: MyString

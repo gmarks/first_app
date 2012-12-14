@@ -1,0 +1,23 @@
+<h1>Buyer Leads Zip Codes for <%= @party.name.titleize %> </h1>
+
+<table>
+  <tr>
+    <th>Zip code</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @buyer_leads_zip_codes.each do |buyer_leads_zip_code| %>
+  <tr>
+    <td><%= buyer_leads_zip_code.zip_code %></td>
+    <td><%= link_to 'Show', buyer_leads_zip_code %></td>
+    <td><%= link_to 'Edit', edit_buyer_leads_zip_code_path(buyer_leads_zip_code) %></td>
+    <td><%= link_to 'Destroy', buyer_leads_zip_code, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Buyer leads zip code', new_party_buyer_leads_zip_code_path(@party) %>

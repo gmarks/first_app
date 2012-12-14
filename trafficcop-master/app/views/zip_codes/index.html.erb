@@ -1,0 +1,23 @@
+<h1>Listing zip_codes</h1>
+
+<table>
+  <tr>
+    <th>Zip code</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @zip_codes.each do |zip_code| %>
+  <tr>
+    <td><%= zip_code.zip_code %></td>
+    <td><%= link_to 'Show', zip_code %></td>
+    <td><%= link_to 'Edit', edit_zip_code_path(zip_code) %></td>
+    <td><%= link_to 'Destroy', zip_code, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Zip code', new_zip_code_path %>

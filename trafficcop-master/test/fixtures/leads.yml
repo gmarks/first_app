@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  agent_id: 1
+  consumer_first_name: MyString
+  consumer_last_name: MyString
+  consumer_email: MyString
+  consumer_phone: MyString
+  message: MyText
+  response_code: 1
+  test_ind: false
+  listing_id: MyString
+
+two:
+  agent_id: 1
+  consumer_first_name: MyString
+  consumer_last_name: MyString
+  consumer_email: MyString
+  consumer_phone: MyString
+  message: MyText
+  response_code: 1
+  test_ind: false
+  listing_id: MyString

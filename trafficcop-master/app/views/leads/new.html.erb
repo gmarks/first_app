@@ -1,0 +1,90 @@
+
+<% if @leaderboard == 'Y' %>
+	<div class="leaderboard_container">
+		
+		<div class="photo_container">
+			<%= link_to image_tag(@agentpicurl), @listingsurl, :class => 'agent_image_link', :target => 'blank' %>
+		</div>
+		<div class="blue_bar">
+			<div class="title">
+				HomeFinder.com Featured Agent
+			</div>
+		</div>
+		<div class="main_text">
+			Contact an agent with experience in this area
+		</div>
+		<%= link_to image_tag("contact_me_button.png"), @listingsurl, :class => 'contact_me_button', :target => 'blank' %>
+		<div class="bottom_row">
+			<div class="agent_name">
+				<%= @agentname %>
+			</div>
+			<div class="phone">
+				(<%= @phone1 %>) <%= @phone2 %>-<%= @phone3 %>
+			</div>
+		</div>
+	</div>
+
+	<!-- this is a listing page where listingid is set or is set to "" because of DFP not sending listingid -->
+<% elsif @listingid != nil || @listingid == "" %>	
+		<div id="details_lead_header">
+			Want to know more?
+		</div>
+		<div class="details_lead_container">
+			<div class="topContainer">
+				<div class="description">
+					Get more information from a knowledgeable buyer's agent
+				</div>
+			</div>		
+			<div id="listingpgform">
+				<%= render 'listingpgform' %>
+			</div>
+			<div class="details_contact_information">
+				<div id="pic">
+					<%= link_to image_tag(@agentpicurl), @listingsurl, :target => 'blank' %>
+				</div>
+				<div id="agentinfo">
+					<div id="agent_name">
+					<b><%= @agentname %></b>
+					<br>
+						<div id="phone" style="color:#F57A00">
+						<strong>(<%= @phone1 %>) <%= @phone2 %>-<%= @phone3 %></strong>
+						</div>
+
+						<div id="listings_link">
+							<%= link_to "View My Listings", @listingsurl, :style => 'color:#497F0F', :target => 'blank' %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<% elsif  @detailstfn == 'Y' %>
+	<div>
+		<p class="detailsphone">Call <%= @agentname %>, a local buyer's agent, at (<%= @phone1 %>) <%= @phone2 %>-<%= @phone3 %> to learn more.</p>
+	</div>
+
+<% else %>
+
+		<div id="search_leads_header">Connect with a Local Agent</div>
+		<div class="search_leads_container">
+			<div class="contact_information">
+				<%= link_to image_tag(@agentpicurl), @listingsurl, :class => 'agent_image_link', :target => 'blank' %>
+				<div class="agent_information">
+					<div class="agent_name">
+						<%= @agentname %>
+					</div>
+					<div class="phone">
+						(<%= @phone1 %>) <%= @phone2 %>-<%= @phone3 %>
+					</div>
+					<div class="listings_link">
+						<%= link_to "View My Listings", @listingsurl, :target => 'blank' %>
+					</div>			
+				</div>
+			</div>
+			<div class="contact_form">
+				<%= render 'form' %>
+			</div>
+		</div>
+
+<% end %>
+	

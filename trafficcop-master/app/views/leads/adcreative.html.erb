@@ -1,0 +1,12 @@
+<h1><p> This is what the ads look like on your local machine (If you're not running the app locally, you'll see an error.)</p></h1>
+	<iframe src="http://localhost:3000/leads/new?partyid=4158170&listingid=87595722" width="240" height="470" scrolling="no" frameBorder="0"></iframe>
+	<iframe src="http://localhost:3000/leads/new?partyid=4158170" width="300" height="250" scrolling="no" frameBorder="0"></iframe>
+	<iframe src="http://localhost:3000/leads/new?partyid=4158170&listingid=" width="240" height="470" scrolling="no" frameBorder="0"></iframe>
+	<iframe src="http://localhost:3000/leads/new?partyid=4158170&leaderboard=Y" width="240" height="470" scrolling="no" frameBorder="0"></iframe>
+<br>
+
+<h1><p>Production Environment</p></h1>
+	<iframe src="http://#{<%= HOSTNAME %>}/leads/new?partyid=4158170&listingid=87595722" width="240" height="470" scrolling="no" frameBorder="0"></iframe>
+	<iframe src="http://#{<%= HOSTNAME %>}/leads/new?partyid=4158170" width="300" height="250" scrolling="no" frameBorder="0"></iframe>
+	<iframe src="http://#{<%= HOSTNAME %>}/leads/new?partyid=4158170&listingid=" width="240" height="470" scrolling="no" frameBorder="0"></iframe>
+	<iframe src="http://#{<%= HOSTNAME %>}/leads/new?partyid=4158170&leaderboard=Y" width="730" height="92" scrolling="no" frameBorder="0"></iframe>

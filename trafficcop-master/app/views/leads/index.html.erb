@@ -1,0 +1,49 @@
+<div style="background-color:#EBEFE3;width:980px;margin-left:auto;margin-right:auto;border:1px solid #447C09;border-radius:4px 4px 4px 4px;padding:10px;font:14px bold Arial,Lucida Grande,Geneva,Helvetica,sans-serif">
+	
+
+<h1>Welcome to Agent Ads!</h1>
+<h2>Agent Ads is a dynamic buyer lead form ad creative generator</h2>
+<br>
+<h3>HomeFinder.com Ad Ops can iframe a dynamic page housing a lead form for an agent in place of a static image for ad creative.</h3>
+<p>Here's an example:</p>
+<textarea name="textarea" cols="72" rows="10"><iframe src="http://<%= HOSTNAME %>/leads/new?partyid=4158170&listingid=%%LISTINGID%%&click_url=%%CLICK_URL_ESC%%" width="240" height="740" scrolling="no" frameBorder="0"></iframe></textarea>
+<p>Go to the <a href="https://docs.google.com/a/homefinder.com/document/d/1ndJjr7VaXAVIiQZWQFe6jhrFsknnaT0LuTd-Vaj9Ido/edit">Agent Ads Reference doc</a> in Google Docs for more information on how to implement in DFP and available options.</p>
+<p>See the <%= link_to "Ad Creatives Page", creatives_url %> to view example creative.</p>
+<br>
+<h2>Leads that have been sent through ad creatives hosted by Agent Ads:</h2>
+<br>
+<table>
+  <tr>
+    <th>Agent (HF Party ID)</th>
+    <th>Consumer First Name</th>
+    <th>Consumer Last Name</th>
+    <th>Consumer Email</th>
+    <th>Message</th>
+    <th>Listing ID</th>
+    <th>Lead Sent Date</th>
+    <th>Test Lead?</th>
+
+  </tr>
+
+<% @leads.each do |lead| %>
+  <tr>
+    <td><%= lead.agent_id %></td>
+    <td><%= lead.consumer_first_name %></td>
+    <td><%= lead.consumer_last_name %></td>
+    <td><%= lead.consumer_email %></td>
+    <td><%= lead.message %></td>
+	<% if lead.test_ind != nil %>
+	    <td><%= lead.listing_id %></td>
+	<% else %>
+    	<td></td>
+	<% end %>	
+    <td><%= lead.created_at %></td>
+	<% if lead.test_ind != nil %>
+    	<td><%= lead.test_ind %></td>
+	<% else %>
+    	<td></td>
+	<% end %>	
+  </tr>
+<% end %>
+</table>
+</div>

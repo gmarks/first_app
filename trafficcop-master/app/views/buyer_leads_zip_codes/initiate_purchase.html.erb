@@ -1,0 +1,62 @@
+<% if @impression_hash %>
+  <div class="field">
+    <%= label_tag  'Impressions Available:' %><br/>
+    <%= @impression_hash[:available_units] %>
+  </div>
+  <div class="field">
+    <%= label_tag  'Available % :' %><br/>
+    <%= @impression_hash[:available_percent] %>
+  </div> 
+  <div class="field">
+    <%= label_tag  'Possible Impressions:' %><br/>
+    <%= @impression_hash[:possible_units] %>
+  </div>
+  <div class="field">
+    <%= label_tag  'Projected starting date:' %><br/>
+    <%= @impression_hash[:start_date_time] %>
+  </div>
+  <div class="field">
+    <%= label_tag  'Projected ending date:' %><br/>
+    <%= @impression_hash[:end_date_time] %>
+  </div>
+  <div class="field">
+    <%= label_tag  'Zip code location:' %><br/>
+    <%= "#{@zip_code.zip_code}  - #{@impression_hash[:city]}, #{@impression_hash[:state]}" %>
+  </div>
+  <div class="field">
+    <%= label_tag  "Google Analytics Details Page Views in the Last Month for: #{@impression_hash[:city]}" %><br/>
+    <%= @impression_hash[:page_views] %>
+  </div>
+  
+<%end%>   
+
+<% if @adwords_estimation_hash %>
+    <h1>Adword Estimation</h1>  
+    <div class="field">
+      <%= label_tag  'Estimated average CPC:' %><br/>
+      <%= @adwords_estimation_hash[:mean_avg_cpc] %>
+    </div>
+    <div class="field">
+      <%= label_tag  'Estimated ad position:' %><br/>
+      <%= @adwords_estimation_hash[:mean_avg_position] %>
+    </div> 
+    <div class="field">
+      <%= label_tag  'Estimated daily clicks:' %><br/>
+      <%= @adwords_estimation_hash[:mean_clicks] %>
+    </div>
+    <div class="field">
+      <%= label_tag  'Estimated daily cost:' %><br/>
+      <%= @adwords_estimation_hash[:mean_total_cost] %>
+    </div> 
+    
+    <div class="field">
+      <h2>Price:</h2>
+      <%= @price %> 
+      <br/>
+      <%= link_to "Purchase", parties_purchase_path(:party_id => @party,:price => @price) %>
+    </div>
+<%end%> 
+
+
+
+

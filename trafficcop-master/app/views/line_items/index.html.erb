@@ -1,0 +1,41 @@
+<h1>Listing Line Items</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Target platform</th>
+    <th>Inventory sizes</th>
+    <th>Type</th>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>Custom criteria</th>
+    <th>Comment</th>
+    <th>Units bought</th>
+    <th>Unit type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @line_items.each do |line_item| %>
+  <tr>
+    <td><%= line_item.name %></td>
+    <td><%= line_item.target_platform %></td>
+    <td><%= line_item.inventory_sizes %></td>
+    <td><%= line_item.line_item_type %></td>
+    <td><%= line_item.start_time %></td>
+    <td><%= line_item.end_time %></td>
+    <td><%= line_item.custom_criteria %></td>
+    <td><%= line_item.comment %></td>
+    <td><%= line_item.units_bought %></td>
+    <td><%= line_item.unit_type %></td>
+    <td><%= link_to 'Show', line_item %></td>
+    <td><%= link_to 'Edit', edit_line_item_path(line_item) %></td>
+    <td><%= link_to 'Destroy', line_item, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Line item', new_line_item_path %>

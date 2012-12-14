@@ -1,0 +1,65 @@
+<%= form_for([@party, @buyer_leads_zip_code]) do |f| %>
+  <% if @buyer_leads_zip_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@buyer_leads_zip_code.errors.count, "error") %> prohibited this buyer_leads_zip_code from being saved:</h2>
+
+      <ul>
+      <% @buyer_leads_zip_code.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+<% if @impression_hash %>
+  <div class="field">
+    <%= label_tag  'Impressions Available:' %><br/>
+    <%= @impression_hash[:available_units] %>
+  </div>
+  <div class="field">
+    <%= label_tag  'Available % :' %><br/>
+    <%= @impression_hash[:available_percent] %>
+  </div> 
+  <div class="field">
+    <%= label_tag  'Possible Impressions:' %><br/>
+    <%= @impression_hash[:possible_units] %>
+  </div>
+  <div class="field">
+    <%= label_tag  'Projected starting date:' %><br/>
+    <%= @impression_hash[:start_date_time] %>
+  </div>
+  <div class="field">
+    <%= label_tag  'Projected ending date:' %><br/>
+    <%= @impression_hash[:end_date_time] %>
+  </div>
+  <div class="field">
+    <%= label_tag  'Zip code location:' %><br/>
+    <%= "#{@zip_code.zip_code}  - #{@impression_hash[:city]}, #{@impression_hash[:state]}" %>
+  </div>
+<%end%>
+
+  <% if @adwords_estimation_hash %>
+    <h1>Adword Estimation</h1>  
+    <div class="field">
+      <%= label_tag  'Estimated average CPC:' %><br/>
+      <%= @adwords_estimation_hash[:mean_avg_cpc] %>
+    </div>
+    <div class="field">
+      <%= label_tag  'Estimated ad position:' %><br/>
+      <%= @adwords_estimation_hash[:mean_avg_position] %>
+    </div> 
+    <div class="field">
+      <%= label_tag  'Estimated daily clicks:' %><br/>
+      <%= @adwords_estimation_hash[:mean_clicks] %>
+    </div>
+    <div class="field">
+      <%= label_tag  'Estimated daily cost:' %><br/>
+      <%= @adwords_estimation_hash[:mean_total_cost] %>
+    </div>
+  <%end%>
+    <%= hidden_field_tag :zip_code,  @zip_code.zip_code %>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

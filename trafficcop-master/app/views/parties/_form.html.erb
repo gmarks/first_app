@@ -1,0 +1,26 @@
+<%= form_for(@party) do |f| %>
+  <% if @party.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@party.errors.count, "error") %> prohibited this party from being saved:</h2>
+
+      <ul>
+      <% @party.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :hf_party_id, "HomeFinder Party ID" %><br />
+    <%= f.text_field :hf_party_id %>
+  </div>
+  <div class="field">
+    <%= f.label :alternate_recurly_account_code, "Recurly Account Code, if NOT party id" %><br />
+    <%= f.text_field :alternate_recurly_account_code %>
+  </div>
+  <div class="actions">
+	<% button_text = ("Find HomeFinder Party" if action_name.downcase == "new") || "Update" %>
+    <%= f.submit button_text %>
+  </div>
+<% end %>

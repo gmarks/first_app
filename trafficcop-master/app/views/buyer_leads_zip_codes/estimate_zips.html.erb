@@ -1,0 +1,7 @@
+<h1>Let's Order Some Buyer Leads!</h1>
+<p id="notice"><%= notice %></p>
+<%= form_tag('/buyer_leads_zip_codes/new', :method => :get) do %>
+  	<%= label_tag :zip_code, "Enter A Zip Code" %>
+	<%= text_field_tag :zip_code %>
+	<%= submit_tag "Estimate Impressions", :id => "submit", :name => "submit", :class => "form_submit", :disabled => false, :disable_with => "Please wait..." %>
+<% end -%>

@@ -1,0 +1,211 @@
+BUYER LEADS
+	
+extract zip code out
+x	- zip code model, with zip code
+x	- many to many relationship
+	- remove zip_code string from buyerleadszipcode
+	- buyerleads create action checks new zip
+
+bring agentad2 code over
+x	bring code over
+x		scaffold
+x		routes
+x		controller
+x		model
+x		constants
+x		views
+x			index
+x			adcreative
+x			show
+x			new
+x			edit
+x		css
+x	bring leads over
+x	update hardcoded agentad2 url
+	update urls for current customers
+		add blzc to party
+x			routes
+			party/blzc/new 
+				separate layouts
+					paste current scaffold into leads
+				estimate based on placements or specific line items
+				format date
+				price - CPM?
+					shared?  per view?
+					
+		track dfp_line_item to BuyerLeadZipCode model
+
+cleanup
+		estimate zip form without needing a buyer
+		
+new billing flow
+	staging app up, circeci integration
+	production app, right number of dynos
+	rep gets agent, brings up page, with best zip
+	rep chooses purchase level, proceeds to billing
+		new - new billing form
+		existing - upgrade
+	rep completes billing, we schedule ad, build creative, etc.
+		
+
+recurly buyerleads addon
+	Test account: https://homefinder-test.recurly.com/accounts/1234562
+	Subscription plan: https://homefinder-test.recurly.com/plans/enhancedlistings_realestate_agent
+	Add on: buyerlead_realestate_agent_addon
+
+ 60657
+ 60613
+ 60614
+ 60611
+ 60618
+	
+
+BUYERCHAT
+	how do we know if it can work?
+		# of chats to expect
+			# of chats from potential buyers w/o an agent
+				# has to be worth agent's time --> target, sell on keeping in background while they do other stuff
+	conversion funnel
+		need to know:
+			how many times chat should have appeared --> page served with that zip 
+				fire off event if we serve page when operator is online and zip is there
+			how many times chat does appear 
+				on_before_load --> js loaded, before chat window appears
+				on_after_load --> after chat box appears
+			window opened
+				on_chat_window_opened --> after window opens
+			did they chat?
+				pull from chat api, by operator
+				need to know add details in chat log, so we can match up with the chats
+		
+	how to set up:
+	http://www.livechatinc.com/kb/livechat-for-multiple-websites/
+	http://www.livechatinc.com/kb/dividing-livechat-by-department/
+	
+	agent needs to sign up for zip(s)
+		upload pic
+			WHAT'S THE RIGHT HANDOFF TO THEIR LOGIN VS OURS?
+			THEY/WE HAVE TO UPLOAD IN LIVECHAT
+				either can
+		set password
+			how to reset? - THROUGH LIVECHAT
+		can't change skill - CORRECT
+		will the agent get the email if we create their account through the API?
+			SHOULD, BUT NOT WORKING
+		operators should only be able to see themselves
+			OPERATORS CAN ONLY SEE OTHER OPERATORS IN THEIR OWN SKILL
+				- set the skill to be operator specific
+	manual fulfillment steps
+		- add skill to operator
+		- add avatar to operator
+		
+	STUFF TO DO TO HAVE JEN TEST
+		define success:
+			- would she pay for it?
+			- how may chats does she get?
+			- how many potential buyers does she get?
+		
+		stuff to do
+			- hide when she's not logged in
+			- create account for her
+x			- customize chat box colors, etc.
+			- show on search results or details pages when that zip is active
+			- 99501
+			- let jen know
+		
+		questions for jen:
+			- would you pay for a whole month, exclusive access?
+			- what does she want to know up front in the questionaire?
+			
+		questions for us:
+			- how do we make sure we've got enough coverage?  should we sell multiple agents per zip?
+				- we could, and make precedence based on feedback rating
+				- how do we charge?
+			- should we give credits if they get a certain positive rating?
+		
+	
+http://api.geonames.org/postalCodeSearchJSON?postalcode=60091&maxRows=100&username=demo&country=US
+
+
+TODO NEXT
+	fix pv
+	fix billing date
+	sort leads by date
+
+	- party pageviews	
+x		- analytics
+			- by source?
+	- fix party pv's - use new google library?
+		- use pageviews instead of visits
+	- add cumulative history for data
+	- adwords
+		
+		- agent has o to many ad groups
+			- ad groups
+				- show ads
+				- pause ads
+	- DFP ad impressions
+	- Google SEM clicks
+	- total available clicks to buy
+
+
+	spw report
+		- name
+		- advertiser id
+		- date sold
+		- how many spws built
+			- availalbe
+			- expired
+			- order by build date
+		- current listings
+		- made changes to website?
+		- rankings?
+		- sugar tickets?
+		- do they have adcenter access?
+		- spws, google rankings, activities
+
+
+agent 1
+	shares 60657 with others - campaign
+	owns 60091 himself  - campaign here
+
+agent 2
+	shares 60657 with others - campaign
+
+agent1/60657 campagin
+agent2/60657 campaign
+
+
+60657 campaign
+	agent1 ad group
+	agent2 ad group
+
+60091 campaign
+	agent1 ad group
+
+
+agent
+	shares 60657 with others
+		add agent into 60657
+	owns 60091 himself  - campaign here
+		add agent into 60091
+
+
+	
+agent1  Elyse Whoever
+	60657
+		leads: 0 --> keep running
+	60091	
+		leads: 0 --> keep running
+	
+
+agent2  George
+	60657
+		leads: 0 --> keep running
+
+worklow
+	1. enter party
+	2. create ads
+		- for each zip
+			- see if campaign exists, if not create it
+			- create ad group

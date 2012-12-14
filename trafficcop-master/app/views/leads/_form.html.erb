@@ -1,0 +1,47 @@
+
+
+<%= form_for(@lead) do |f| %>
+  <!-- <% if @lead.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lead.errors.count, "error") %> prohibited this lead from being saved:</h2>
+
+      <ul>
+      <% @lead.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %> -->
+
+  <div class="field">
+    <%= f.hidden_field :agent_id, :value => @partyid %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :test_ind, :value => @test_ind %>
+  </div>
+  <div class="field">
+	<div class="name">
+    <%= f.text_field :consumer_first_name, :value => "Your Name (Required)", :onclick => 'this.select();', :size => 16 %>
+	</div>
+  </div>
+  <div class="field">
+	<div style="">
+    <!-- <%= f.label :consumer_last_name %><br /> -->
+    <%= f.hidden_field :consumer_last_name, :size => 30, :value => "HomeBuyer" %>
+	</div>
+  </div>
+  <div class="field">
+	<div class="email">
+    <%= f.text_field :consumer_email, :value => "E-mail (Required)", :onclick => 'this.select();', :size =>16 %>
+	</div>
+  </div>
+  <div class="field">
+	<div class="message">
+    <%= f.text_area :message, :cols => 16, :rows => 4, :value => "Your message here..." %>
+	</div>
+  </div>
+  <div class="actions contact_agent_button">
+    <%= image_submit_tag("contact_agent.png", :alt => "Contact Agent") %>
+  </div>
+<% end %>
+

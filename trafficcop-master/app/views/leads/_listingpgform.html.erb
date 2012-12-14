@@ -1,0 +1,59 @@
+
+
+<%= form_for(@lead) do |f| %>
+  <!-- <% if @lead.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lead.errors.count, "error") %> prohibited this lead from being saved:</h2>
+
+      <ul>
+      <% @lead.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %> -->
+<div class="middleContainer">
+  <div class="field">
+    <%= f.hidden_field :agent_id, :value => @partyid %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :test_ind, :value => @test_ind %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :listing_id, :value => @listingid %>
+  </div>
+  <div class="field" id="consumer_first_name">
+	<div class="yourName">
+    <%= f.text_field :consumer_first_name, :size => 27, :value => "Your Name (Required)", :onclick => 'this.select();' %>
+
+	</div>
+  </div>
+  <div class="field">
+	<div style="">
+    <%= f.hidden_field :consumer_last_name, :size => 27, :value => "HomeBuyer" %>
+	</div>
+  </div>
+
+  <div class="field">
+	<div class="email">
+    <%= f.text_field :consumer_email, :size =>27, :value => "Your Email (Required)", :onclick => 'this.select();' %>
+	</div>
+  </div>
+
+  <div class="field">
+	<div class="leadMessage">
+		<% if @listingaddress != nil %>
+		    <%= f.text_area :message, :cols => 23, :rows => 4, :value => "Hi, I found this property at #{@listingaddress} on HomeFinder.com, and I have some questions." %>
+		<% else %>
+		    <%= f.text_area :message, :cols => 23, :rows => 4, :value => "Hi, I found a property on HomeFinder.com, and I have some questions." %>
+		<% end %>
+	</div>
+  </div>
+
+</div>
+
+  <div class="actions contactAgentButton">
+    <%= image_submit_tag("contact_agent_listing.png", :alt => "Contact Agent") %>
+  </div>
+<% end %>
+

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<div id="header" style="background-color:#497F0F;width:280px;height:13px;border:1px solid #447C09;border-radius:4px 4px 0 0;padding:10px;text-align:center;font:14px bold Arial,Lucida Grande,Geneva,Helvetica,sans-serif;color:white">
+Contact a Local Agent
+</div>
+<div id="container" style="border-top:0;top:-2;background-color:#D9E5CE;width:280px;border:1px solid #447C09;border-radius:0 0 4px 4px;padding:10px;font:12px Arial,Lucida Grande,Geneva,Helvetica,sans-serif">
+
+<div id="card" style="width:240;border:1px solid #447C09;background-color:white;padding:10px">
+
+<div id="pic" style="float:left">
+<%= link_to image_tag(@agentpicurl), @listingsurl, :target => 'blank' %>
+</div>
+<div id="confirm" style="margin-left:120px">
+<p>Success! Your message has been sent to <%= link_to "#{@agentname}", "#{@listingsurl}", :style => 'color:#497F0F', :target => '_blank'  %> </p>
+</div>

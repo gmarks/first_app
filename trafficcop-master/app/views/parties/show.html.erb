@@ -1,0 +1,116 @@
+<p id="notice"><%= notice %></p>
+
+<p><%= image_tag @party.hf_party_image_url %></p>
+<p>
+  <b>HomeFinder Party ID:</b>
+  <%= @party.hf_party_id %>
+</p>
+<p>
+  <b>Name:</b>
+  <%= @party.name %>
+</p>
+<p>
+  <b>Type:</b>
+  <%= @party.hf_party_type %>
+</p>
+
+<p>
+  <b>Buyer Leads Zip Codes:</b>
+	<ul>
+	<% @party.zip_codes.each do |zip| %>
+		<li><%= zip.zip_code %></li>
+	<% end %>
+	</ul>
+	<%= form_tag(new_party_buyer_leads_zip_code_path(@party), :method => :get) do %>
+	  	<%= label_tag :zip_code, "Check Inventory for a New Zip Code" %>
+		<%= text_field_tag :zip_code %>
+		<%= submit_tag "Estimate Impressions", :id => "submit", :name => "submit", :class => "form_submit", :disabled => false, :disable_with => "Please wait..." %>
+	<% end -%>
+</p>
+
+
+<h2>Leads In <%= Time.now.strftime("%B %Y")%></h2>
+<p><b><i>Traffic and Leads generated from <%= @start_date.strftime("%Y-%m-%d") %> to <%= @end_date.strftime("%Y-%m-%d") %></i></b></p>
+<table class="formatted_table">
+	<tr>
+		<th>Total Listings</th>
+		<td class="right"><%= @party.number_of_listings %></td>
+	</tr>
+	<tr>
+		<th>Total Party Pageviews</th>
+		<td class="right"><%= @party.mtd_pageviews %></td>
+	</tr>
+	<tr>
+		<th>Total Emails</th>
+		<td class="right"><%= @party.mtd_emails %></td>
+	</tr>
+	<tr>
+		<th>Unique Emails</th>
+		<td class="right"><%= @party.mtd_unique_emails %></td>
+	</tr>
+	<tr>
+		<th>Calls</th>
+		<td class="right"><%= @party.mtd_calls %></td>
+	</tr>
+	<tr>
+		<th>Unique Calls</th>
+		<td class="right"><%= @party.mtd_unique_calls %></td>
+	</tr>
+	<tr>
+		<th>Total Unique Calls & Emails</th>
+		<td class="right"><%= @party.total_unique_leads %></td>
+	</tr>
+</table>
+<p>Leads last checked: <%= @party.updated_at.strftime("%D %r") %></p>
+
+<% if @leads_hash && @leads_hash[:calls].size > 0 %>
+	<h3>Calls</h3>
+	<table class="formatted_table">
+		<tr>
+			<th>Call Datetime</th>
+			<th>Caller phone</th>
+			<th>Call Duration (sec)</th>
+		</tr>
+	<% @leads_hash[:calls].sort_by{|call| call["submittedDateTime"]}.each do |lead| %>
+		<tr <%= "class='hf_quality_check'" if lead["callersPhone"].downcase.include?("312601") %>>
+			<td><%= Time.parse(lead["submittedDateTime"]).strftime("%D %r") %></td>
+			<td class="center"><%= number_to_phone(lead["callersPhone"]) %></td>
+			<td class="right"><%= lead["callDuration"].to_i %></td>
+			<td><small><i><%= distance_of_time_in_words(lead["callDuration"].to_i) %></i></small></td>
+			<% if lead["callersPhone"].downcase.include?("312601") %>
+				<td>* HF quality check</td>
+			<% end %>
+		</tr>
+	<% end %>
+	</table>
+<% end %>
+
+<% if @leads_hash && @leads_hash[:emails].size > 0  %>
+	<h3>Emails</h3>
+	<table class="formatted_table">
+		<tr>
+			<th>Listing Address</th>
+			<th>Email Date & Time</th>
+			<th>From Name</th>
+			<th>From Email</th>
+		</tr>
+	<% @leads_hash[:emails].sort_by{|email| email["submittedDateTime"]}.each do |lead| %>
+		<tr <%= "class='hf_quality_check'" if lead["consumerEmailAddress"].downcase.include?("homefinder.com") %>>
+			<td><% if lead["address"] %>
+				<%= lead["address"]["line1"] %><br/>
+				<%= lead["address"]["city"] %>, <%= lead["address"]["state"] %> <%= lead["address"]["zip"] %>
+				<% end %>
+			</td>
+			<td><%= Time.parse(lead["submittedDateTime"]).strftime("%D %r") %></td>
+			<td class="center"><%= lead["consumerName"] %></td>
+			<td class="right"><%= lead["consumerEmailAddress"] %></td>
+			<% if lead["consumerEmailAddress"].downcase.include?("homefinder.com") %>
+				<td>* HF quality check</td>
+			<% end %>
+		</tr>
+	<% end %>
+	</table>
+<% end %>  
+
+<%= link_to 'Edit', edit_party_path(@party) %> |
+<%= link_to 'All Parties', parties_path %>

@@ -1,0 +1,79 @@
+.leaderboard_container {
+	background-color: #FFFFFF;
+	border: 1px solid #000000;
+	height: 88px;
+	width: 726px;
+}
+
+.leaderboard_container .blue_bar {
+	background-color:#497F0F;
+	background: -moz-linear-gradient(top, #718EB2, #255289);
+	background: -webkit-gradient(linear, left top, left bottom, from(#718EB2), to(#255289));
+	background:-o-linear-gradient(#718EB2, #255289);
+	-pie-background: linear-gradient(#718EB2, #255289); /*PIE*/
+	behavior: url(http://www.homefinder.com/PIE.htc);
+	font-family: Arial,Lucida Grande,Geneva,Helvetica,sans-serif;
+	font-weight: normal;
+	color: #FFFFFF;
+	height: 21px;
+	padding: 4px 0 0 0;
+	text-align: left;
+	text-shadow: 1px 1px 1px #555555;
+	width: 726px;
+}
+
+.leaderboard_container .blue_bar .title {
+	float: left;
+	font-size: 14px;
+}
+
+.leaderboard_container .photo_container {
+	border: 1px solid #FFFFFF;
+	float: left;
+	margin: 5px 12px 5px 12px;
+}
+
+.leaderboard_container .photo_container a {
+    display: block;
+	max-height: 78px;
+    max-width: 71px;
+}
+
+.leaderboard_container .photo_container img {
+    max-height: 78px;
+    max-width: 71px;
+}
+
+.leaderboard_container .main_text {
+	color: #000000;
+	float: left;
+	font-size: 20px;
+	font-weight: normal;
+	margin: 8px 0 0 0;
+}
+
+.leaderboard_container .contact_me_button {
+	float: right;
+	margin: 16px 12px 0 0;
+}
+
+.leaderboard_container .bottom_row {
+	float: left;
+	margin-top: 8px;
+}
+
+.leaderboard_container .bottom_row .agent_name {
+	color: #255289;
+	float: left;
+	font-size: 18px;
+	font-weight: normal;
+	margin-right: 10px;
+}
+
+.leaderboard_container .bottom_row .phone {
+	color: #dc6509;
+	float: left;
+	font-size: 16px;
+	font-weight: normal;
+	margin-right: 4px;
+}
